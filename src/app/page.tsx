@@ -12,9 +12,9 @@ export default function Home() {
   const { isOpen, toggle} = useContext(SearchBarContext)
 
   const mockStations = [
-    { name: "Station 1", codec: "mp3", country:"BR", language: "Portuguese", stationuuid: "0", url: "" ,},
-    { name: "Station 2", codec: "mp3", country:"BR", language: "Portuguese", stationuuid: "0", url: "" ,},
-    { name: "Station 3", codec: "mp3", country:"BR", language: "Portuguese", stationuuid: "0", url: "" ,},
+    { name: "Station 1", codec: "mp3", country:"BR", language: "Portuguese", stationuuid: "0", url: "" , tags: "Brasil, Forró"},
+    { name: "Station 2", codec: "mp3", country:"BR", language: "Portuguese", stationuuid: "0", url: "" , tags: "Brasil, Sertanejo"},
+    { name: "Station 3", codec: "mp3", country:"BR", language: "Portuguese", stationuuid: "0", url: "" , tags: "Brasil, Pop Rock, MPB"},
   ]
 
 

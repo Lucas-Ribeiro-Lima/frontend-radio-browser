@@ -5,6 +5,7 @@ export type Station = {
   codec: string
   country: string
   language: string
+  tags: string
 }
 
 export type StationApiData = {

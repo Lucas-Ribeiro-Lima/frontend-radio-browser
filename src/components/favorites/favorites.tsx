@@ -20,7 +20,7 @@ type StationListItemProps = {
 }
 
 export function StationListItem({ station }: Readonly<StationListItemProps>) {
-  const { name } = station
+  const { name, tags } = station
   return(
     <li className="
         flex p-2 justify-between
@@ -29,7 +29,11 @@ export function StationListItem({ station }: Readonly<StationListItemProps>) {
         hover:bg-slate-300">
       <div className="flex space-x-4">
         <button className="hover:text-sky-500"><Icons.Play /></button>
-        <div className="text-lg">{name}</div>
+        <div>
+          <div className="text-lg">{name}</div>
+          <div className="text-sm text-slate-600">{tags}</div>
+
+        </div>
       </div>
       <div className="flex space-x-2">
         <button className="hidden lg:block"><Icons.Pencil/> </button>
