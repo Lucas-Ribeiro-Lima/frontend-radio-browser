@@ -1,6 +1,4 @@
-import { loggers } from '@/adapters/logger'
 import Axios, { AxiosError } from 'axios'
-import { Logger } from 'logger'
 import { HttpClient, HttpRequestConfs } from '..'
 
 const axiosDefault = Axios.create({
