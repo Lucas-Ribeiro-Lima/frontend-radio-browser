@@ -17,11 +17,11 @@ export default function Home() {
   const { isOpen, toggle} = useContext(SearchBarContext)
   const { stations, filterSearch } = useSearchStations(radioService)
   const { filteredFavoriteStations, addFav, removeFav, editFav, filterFav, onFav  } = useFavoriteStations()
-  const { station: currStation, isPlaying, changeStation, toggle: toggleRadio } = useRadio()
+  const { station: currStation, isPlaying, changeStation, toggle: toggleRadio, isLoading } = useRadio()
 
   return(
     <div className="lg:flex lg:flex-row-reverse h-full">
-      <main className="flex flex-1 flex-col p-4">
+      <main className="flex flex-1 flex-col p-4 overflow-auto scrollbar-custom">
         <NavBar.Wrapper>  
           <NavBar.Content toggleSearch={toggle} searchOpen={isOpen}/>
         </NavBar.Wrapper>
@@ -32,7 +32,7 @@ export default function Home() {
           <Station.Header title="Favorite radios">
             <Station.HeaderAction filterFavorite={filterFav}/>
           </Station.Header>
-          <Station.Content station={currStation} toogle={toggleRadio} isPlaying={isPlaying}/>
+          <Station.Content station={currStation} toogle={toggleRadio} isPlaying={isPlaying} isLoading={isLoading}/>
           <Separator className="my-4 bg-slate-400"/>
           <StationFavorites.List.Wrapper>
             {filteredFavoriteStations.map((station) => {
@@ -62,8 +62,8 @@ export default function Home() {
               )
             })}
           </Search.List.Wrapper>
-          <Search.List.Pagination filterSearch={filterSearch}/>
         </Search.Content>
+        <Search.List.Pagination filterSearch={filterSearch}/>
       </Search.Wrapper>
     </div>
   )

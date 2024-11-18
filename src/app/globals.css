@@ -90,5 +90,21 @@ body {
   .search-closed {
     @apply translate-x-full invisible opacity-0;
   }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    @apply w-3 h-2
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    @apply rounded-full bg-transparent
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    @apply bg-slate-400 rounded-full border-[3px] border-solid border-white
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400
+  }
 }
 
