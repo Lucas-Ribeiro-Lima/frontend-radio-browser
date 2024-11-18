@@ -34,12 +34,12 @@ export class RadioService implements RadioServiceContract {
     const stations: Station[] = apiResponse.map((station) => {
       return {
         stationuuid: station.stationuuid,
-        name: station.name,
+        name: station.name.substring(0, 25).concat("..."),
         url: station.url,
         codec: station.codec,
         language: station.language,
         country: station.country,
-        tags: station.tags
+        tags: station.tags.split(",").slice(0, 3).join(" ")
       }
     })
 
