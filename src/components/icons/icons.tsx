@@ -24,7 +24,7 @@ export function StopCircleIcon() {
 }
 
 export function Trash2Icon() {
-  return <Trash2IconLucide className="text-rose-600 hover:text-rose-500"/>
+  return <Trash2IconLucide className="text-rose-600 hover:text-rose-500" aria-description='trash icon'/>
 }
 
 export function AlignJustifyIcon() {
@@ -44,7 +44,7 @@ export function CheckIcon() {
 }
 
 export function LoaderIcon() {
-  return <LoaderCircleIconLucide className='text-sky-600'/>
+  return <LoaderCircleIconLucide className='text-sky-600 animate-spin'/>
 }
 
 export function ChevronDownIcon() {
