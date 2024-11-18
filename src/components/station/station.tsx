@@ -1,6 +1,7 @@
-import { Station } from "@/domain/type"
 import { Icons } from "@/components/icons"
-import React from "react"
+import { Station } from "@/domain/type"
+import { Input } from "../ui/input"
+import { useEffect } from "react"
 
 type StationCurrentWrapperProps = {
   children: React.ReactNode
@@ -21,7 +22,7 @@ type StationCurrentHeaderProps = {
 
 export function StationCurrentHeader({ title, children }: Readonly<StationCurrentHeaderProps>) {
   return(
-    <div className="flex justify-between items-center pl-2 pr-4 pb-1">
+    <div className="flex justify-between items-center pl-2 pb-1">
       <h2>{ title }</h2>
       { children }
     </div>
@@ -29,28 +30,34 @@ export function StationCurrentHeader({ title, children }: Readonly<StationCurren
 }
 
 type StationCurrentActionProps = {
-  toggleSearch: () => void
+  filterFavorite: (name: string) => void
 }
 
-export function StationCurrentAction({ toggleSearch }: Readonly<StationCurrentActionProps>) {
+export function StationCurrentAction({ filterFavorite }: Readonly<StationCurrentActionProps>) {
+  useEffect(() => {
+    filterFavorite("")
+  }, [filterFavorite])
+
   return(
-    <button onClick={toggleSearch} className="hidden lg:block">
+    <button className="hidden lg:block">
       <div className="flex space-x-2 items-center">
         <Icons.Search/> 
-        <span className="text-sm">
-          Search stations
-        </span>
-      </div>
+        <Input 
+          onChange={(e) => filterFavorite(e.target.value)} 
+          placeholder="Search stations" 
+          className="w-48 border-none"/>
+        </div>
     </button>
   )
 }
 
 type StationCurrentProps = {
-  station: Station
+  station: Station | null
+  isPlaying: boolean
+  toogle: () => void 
 }
 
-export function StationCurrentContent({ station }: Readonly<StationCurrentProps>) {
-  const { name } = station
+export function StationCurrentContent({ station, toogle, isPlaying  }: Readonly<StationCurrentProps>) {
   return(
     <div className="
         flex p-2 justify-between 
@@ -58,8 +65,11 @@ export function StationCurrentContent({ station }: Readonly<StationCurrentProps>
         shadow-sm shadow-slate-600
         hover:bg-slate-300">
       <div className="flex space-x-4">
-        <button><Icons.Play/></button>
-        <div className="text-lg">{name}</div>
+        <button onClick={toogle}>
+          {isPlaying &&  <Icons.Stop/>}
+          {!isPlaying &&  <Icons.Play/>}
+        </button>
+        <div className="text-lg">{station?.name || "Select a radio"}</div>
       </div>
     </div>
   )

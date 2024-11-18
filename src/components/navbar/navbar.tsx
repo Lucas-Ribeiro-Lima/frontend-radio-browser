@@ -21,7 +21,7 @@ type NavBarContentProps = {
 export function NavBarContent({ searchOpen, toggleSearch }: Readonly<NavBarContentProps>) {
   return(
     <button onClick={toggleSearch} className="lg:hidden absolute top-4 right-4 z-20">
-      {!searchOpen &&  <Icons.Search/>}
+      {!searchOpen && <Icons.Search/>}
     </button>
   )
 }

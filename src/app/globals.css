@@ -85,9 +85,10 @@ body {
     @apply fixed inset-0 bg-white transform transition-all duration-500 ease-in-out;
   }
   .search-open {
-    @apply translate-x-0 visible opacity-100 lg:-translate-x-0;
+    @apply translate-x-0 visible opacity-100;
   }
   .search-closed {
-    @apply translate-x-full invisible opacity-0 lg:-translate-x-full ;
+    @apply translate-x-full invisible opacity-0;
   }
 }
+
