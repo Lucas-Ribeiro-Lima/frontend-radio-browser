@@ -1,0 +1,17 @@
+version: "3.2"
+
+networks:
+    external:
+services:
+  frontend-radio-browser:
+    build:
+      context: .
+    image: frontend-radio-browser:latest
+    container_name: frontend-radio-browser
+    ports:
+      - 3000:3000
+    environment:
+      - NEXT_PUBLIC_API_URL=https://de1.api.radio-browser.info/json/
+    restart: unless-stopped
+    networks:
+      - external
