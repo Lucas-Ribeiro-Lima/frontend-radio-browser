@@ -8,6 +8,7 @@ export function useRadio() {
   const [ station, setStation ] = useState<Station | null>(null)
   const [ player, setPlayer ]  = useState<Howl | null>(null)
   const [ isPlaying, setIsPlaying ] = useState(false) 
+  const [ isLoading, setIsLoading ] = useState(false)
 
   const toggle = useCallback(() => {
     if(player) {
@@ -22,11 +23,11 @@ export function useRadio() {
 
   useEffect(() => {
     if(station) {
+      setIsLoading(true)
       const howl = new Howl({
         src: [station.url],
         html5: true,
         format: [station.codec],
-        preload: true,
         autoplay: true,
         onplay: () => {
           setIsPlaying(true)
@@ -37,6 +38,9 @@ export function useRadio() {
         onstop: () => {
           setIsPlaying(false)
         },
+        onload: () => {
+          setIsLoading(false)
+        },
         onplayerror: () => {
           toast({
             title: 'Error',
@@ -45,9 +49,10 @@ export function useRadio() {
           })
         },
       })
+      howl.play()
       setPlayer(howl)
     }
   }, [station, toast])
 
-  return { station, toggle, isPlaying, changeStation }  
+  return { station, toggle, isPlaying, isLoading, changeStation }  
 }

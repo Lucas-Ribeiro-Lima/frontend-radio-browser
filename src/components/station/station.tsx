@@ -54,10 +54,11 @@ export function StationCurrentAction({ filterFavorite }: Readonly<StationCurrent
 type StationCurrentProps = {
   station: Station | null
   isPlaying: boolean
+  isLoading: boolean
   toogle: () => void 
 }
 
-export function StationCurrentContent({ station, toogle, isPlaying  }: Readonly<StationCurrentProps>) {
+export function StationCurrentContent({ station, toogle, isPlaying, isLoading  }: Readonly<StationCurrentProps>) {
   return(
     <div className="
         flex p-2 justify-between 
@@ -66,8 +67,9 @@ export function StationCurrentContent({ station, toogle, isPlaying  }: Readonly<
         hover:bg-slate-300">
       <div className="flex space-x-4">
         <button onClick={toogle}>
-          {isPlaying &&  <Icons.Stop/>}
-          {!isPlaying &&  <Icons.Play/>}
+          {isLoading && <Icons.Loading/>}
+          {!isLoading && isPlaying  &&  <Icons.Stop/>}
+          {!isLoading && !isPlaying &&  <Icons.Play/>}
         </button>
         <div className="text-lg">{station?.name || "Select a radio"}</div>
       </div>
