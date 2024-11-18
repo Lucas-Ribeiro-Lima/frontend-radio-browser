@@ -23,10 +23,11 @@ export class RadioService implements RadioServiceContract {
       method: "GET",
       params: {
         limit: 10,
-        page,
+        offset: page,
         country: country || "",
         language: language || "",
-        name: name || ""
+        name: name || "",
+        hideBroken: 1
       }
     })
 
@@ -38,6 +39,7 @@ export class RadioService implements RadioServiceContract {
         codec: station.codec,
         language: station.language,
         country: station.country,
+        tags: station.tags
       }
     })
 

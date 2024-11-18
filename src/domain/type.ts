@@ -17,7 +17,7 @@ export type StationApiData = {
   url_resolved: string
   homepage: string
   favicon: string
-  tags: string[]
+  tags: string
   country: string
   countrycode: string
   iso_3166_2: string
