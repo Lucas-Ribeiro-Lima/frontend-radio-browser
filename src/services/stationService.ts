@@ -16,14 +16,14 @@ interface RadioServiceContract {
 
 export class RadioService implements RadioServiceContract {
   constructor(private readonly client: HttpClient) {}
-
   async getStations({page, country, language, name}: Filters): Promise<Station[]> {
+    console.log(page)
     const apiResponse = await this.client.request<StationApiData[]>({
       url: "/stations/search",
       method: "GET",
       params: {
         limit: 10,
-        offset: page,
+        offset: 10 * page,
         country: country || "",
         language: language || "",
         name: name || "",
